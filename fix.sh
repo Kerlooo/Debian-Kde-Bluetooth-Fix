@@ -30,11 +30,20 @@ echo "Procedura completata!"
 read -n1 -p  "Vuoi installarlo come servizio systemd? (s/n): " comando
 if [[ "$comando" == "s" || "$comando" == "S" ]]; then
     echo "Creazione del servizio systemd..."
-    mv fix.sh /usr/local/bin/fix.sh
+    sudo cp "$(realpath "$0")" /usr/local/bin/fix.sh 
     sudo chmod +x /usr/local/bin/fix.sh
 
-    echo "alias fixbluetooth='/usr/local/bin/fix.sh'" >> ~/.bashrc
-    source ~/.bashrc
+    # Controlla se l'alias è già presente nel file .bashrc
+    if ! grep -q "alias fixbluetooth='/usr/local/bin/fix.sh'" ~/.bashrc; then
+        echo  >> ~/.bashrc
+        echo "# Fix Bluetooth by Kerlo" >> ~/.bashrc 
+        echo "alias fixbluetooth='/usr/local/bin/fix.sh'" >> ~/.bashrc
+        echo "Alias aggiunto al file .bashrc."
+        source ~/.bashrc
+    else
+        echo "Alias già presente nel file .bashrc."
+    fi
+
     echo "Servizio systemd creato con successo!"
     echo "Puoi eseguire il comando 'fixbluetooth' in qualsiasi momento per reinstallare il Bluetooth."
 fi
