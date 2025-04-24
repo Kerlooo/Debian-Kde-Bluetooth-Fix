@@ -8,7 +8,8 @@ Questo script Bash reinstalla e configura il Bluetooth su Debian KDE, rimuovendo
 - Reinstalla Bluez e Bluedevil (senza Blueman)  
 - Riavvia e verifica lo stato del servizio Bluetooth  
 - Ricarica il modulo del kernel per il Bluetooth  
-- Controlla se il dispositivo è riconosciuto  
+- Controlla se il dispositivo è riconosciuto 
+- Installa (su richiesta) il comando  
 - Riavvia il sistema per applicare le modifiche  
 
 ## Installazione  
